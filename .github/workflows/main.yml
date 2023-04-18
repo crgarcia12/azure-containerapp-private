@@ -75,15 +75,3 @@ jobs:
           docker build -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:latest --file ./demoapp/Dockerfile .
           docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
           docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:latest
-
-      - name: Install rabbit operator
-        run: |
-          cd app/aks-deployments/
-          kubectl apply -f https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
-          kubectl apply -f rabbitmq.yaml
-
-      - name: Deploy demoapp
-        run: |
-          cd app/aks-deployments/
-          sed -i s/${{ env.CONTAINER_NAME }}:latest/${{ env.CONTAINER_NAME }}:${{ github.sha }}/g demoapp.yaml 
-          kubectl apply -f demoapp.yaml
