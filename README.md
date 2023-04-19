@@ -17,7 +17,7 @@ $resourceGroup  = "<rg>"
 $githubRepo     = "crgarcia12/azure-containerapp-private"
 
 # Create a Service Principal. The result is an array, concatenate it and convert to json
-$servicePrincipalJson = az ad sp create-for-rbac --name "crgar-glb-githubaction" --role owner --scopes /subscriptions/$subscriptionId --sdk-auth
+$servicePrincipalJson = az ad sp create-for-rbac --name "crgar-containerapp-githubaction" --role owner --scopes /subscriptions/$subscriptionId --sdk-auth
 $servicePrincipalJson = [string]::Concat($servicePrincipalJson)
 $servicePrincipal = $servicePrincipalJson  | Convertfrom-json
 
