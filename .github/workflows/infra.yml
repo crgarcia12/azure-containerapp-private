@@ -76,5 +76,5 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./infra/main.bicep
-        parameters: './infra/main.parameters.json'
+        parameters: ./infra/main.parameters.json
         failOnStdErr: false

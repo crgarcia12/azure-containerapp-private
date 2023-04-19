@@ -5,7 +5,7 @@
       "PREFIX": {
         "value": "${PREFIX}"
       },
-      "location": {
+      "LOCATION": {
         "value": "${LOCATION}"
       }
     }
