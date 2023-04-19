@@ -67,11 +67,11 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Builds and pushes an image up to your Azure Container Registry
-      - name: Build + Push
-        run: |
-          az acr login -n  ${{ env.AZURE_CONTAINER_REGISTRY }}
+      # - name: Build + Push
+      #   run: |
+      #     az acr login -n  ${{ env.AZURE_CONTAINER_REGISTRY }}
 
-          cd app/demoapp
-          docker build -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:latest --file ./demoapp/Dockerfile .
-          docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
-          docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:latest
+      #     cd app/demoapp
+      #     docker build -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:latest --file ./demoapp/Dockerfile .
+      #     docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
+      #     docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:latest

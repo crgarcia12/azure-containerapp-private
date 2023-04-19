@@ -63,6 +63,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+
+    # Builds and pushes an image up to your Azure Container Registry
+    - name: Create RG
+      run: |
+        az group create ${{ secrets.AZURE_RG }} --location ${{ env.LOCATION }}
+
       # Deploy Bicep file
     - name: deploy
       uses: azure/arm-deploy@v1
