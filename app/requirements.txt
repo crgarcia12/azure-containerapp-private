@@ -1,1 +1,2 @@
 streamlit>=0.89.0,<1.0.0
+protobuf~=3.19.0
