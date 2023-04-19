@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "prefix": {
-        "value": "${PREFIX}"
+        "value": "crgar-aca-private"
       },
       "location": {
-        "value": "${LOCATION}"
+        "value": "westeurope"
       }
     }
   }
