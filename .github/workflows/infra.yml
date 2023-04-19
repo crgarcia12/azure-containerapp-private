@@ -47,8 +47,8 @@ env:
   ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.MVP_SUBSCRIPTION }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-  PREFIX: 'crgar-aca-private'
-  LOCATION: 'westeurope'
+  PREFIX: crgar-aca-private
+  LOCATION: westeurope
 
 jobs:
   Deploy-Infrastructure:
@@ -70,5 +70,5 @@ jobs:
         echo 'Create RG'
         az group create --name ${{ secrets.AZURE_RG }} --location ${{ env.LOCATION }}
 
-        echo 'Deploy biceps'
-        az deployment group create --resource-group ${{ secrets.AZURE_RG }} --template-file ./infra/main.bicep --debug
+        echo "Deploy biceps. prefix: $PREFIX | location: $LOCATION"
+        az deployment group create --resource-group ${{ secrets.AZURE_RG }} --template-file infra/main.bicep --parameters infra/main.parameters.json --debug
