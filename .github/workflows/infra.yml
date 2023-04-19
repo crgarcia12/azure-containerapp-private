@@ -43,9 +43,12 @@ on:
     - app/**
 
 env:
-  AZURE_CONTAINER_REGISTRY: "crgaracaprivate"
-  CONTAINER_NAME: "crgar-aca-private"
-  RESOURCE_GROUP: "crgar-aca-private-rg"
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.MVP_SUBSCRIPTION }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  PREFIX: 'crgar-aca-private'
+  LOCATION: 'westeurope'
 
 jobs:
   build-and-deploy:
@@ -67,5 +70,5 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./infra/main.bicep
-        parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
+        parameters: './infra/main.parameters.json'
         failOnStdErr: false
