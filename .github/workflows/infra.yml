@@ -51,7 +51,7 @@ env:
   LOCATION: 'westeurope'
 
 jobs:
-  build-and-deploy:
+  Deploy-Infrastructure:
     runs-on: ubuntu-latest
     steps:
 
@@ -67,14 +67,8 @@ jobs:
     # Builds and pushes an image up to your Azure Container Registry
     - name: Create RG
       run: |
+        echo 'Create RG'
         az group create --name ${{ secrets.AZURE_RG }} --location ${{ env.LOCATION }}
 
-      # Deploy Bicep file
-    - name: deploy
-      uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-        resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./infra/main.bicep
-        parameters: ./infra/main.parameters.json
-        failOnStdErr: false
+        echo 'Deploy biceps'
+        az deployment group create --resource-group ${{ secrets.AZURE_RG }} --template-file ./infra/main.bicep --debug
